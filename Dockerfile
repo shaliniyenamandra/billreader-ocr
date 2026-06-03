@@ -8,7 +8,8 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
-
+COPY ocr_server.py .
 
 EXPOSE 8000
 
+CMD ["sh", "-c", "uvicorn ocr_server:app --host 0.0.0.0 --port ${PORT:-8000}"]
